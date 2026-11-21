@@ -5,9 +5,10 @@ Mobil öncelikli, WordPress'te iframe ile gömülebilen bir **görsel tahmin qui
 ![gercek-mi-yapay-zeka-mi-oyunu.gif](https://raw.githubusercontent.com/wolkanca/ai-or-real-quiz/e0f5558f652bd2f5f20a995f7ae0d0f65abad160/gercek-mi-yapay-zeka-mi-oyunu.gif)
 ## Gerçek mi Yapay Zekâ mı fotoğraf tahmin oyunu
 
-##
 
-##
+
+
+
 
 ## Özellikler
 
