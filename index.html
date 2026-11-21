@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#090e1c">
+  <meta name="description" content="Gerçek fotoğraf mı, yapay zekâ üretimi mi? 10 görselde gözlerine güven, skorunu öğren ve arkadaşlarınla paylaş.">
+  <meta property="og:title" content="Gerçek mi, Yapay Zekâ mı? | Wolkanca Oyunları">
+  <meta property="og:description" content="10 görsel. İki seçenek. Gözlerin seni kandırabilecek mi?">
+  <meta property="og:type" content="website">
+  <title>Gerçek mi, Yapay Zekâ mı? | Wolkanca Oyunları</title>
+  <style>
+    :root {
+      color-scheme:dark;
+      --bg:#090e1c;--surface:#10192c;--surface-2:#162139;--edge:rgba(175,196,242,.15);
+      --text:#f3f6ff;--muted:#a4b3cd;--teal:#49e6ba;--purple:#b99aff;--red:#ff758b;--white:#fff;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html{min-width:290px;scroll-behavior:smooth}
+    body{margin:0;min-height:100dvh;color:var(--text);background:radial-gradient(circle at 7% 9%,rgba(70,59,154,.23),transparent 28%),radial-gradient(circle at 95% 45%,rgba(0,171,171,.12),transparent 35%),var(--bg);line-height:1.5}
+    button,a,input{font:inherit}
+    button{cursor:pointer}
+    button:disabled{opacity:.48;cursor:not-allowed}
+    button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #fee08a;outline-offset:4px}
+    a{color:inherit}
+    [hidden]{display:none!important}
+    .shell{width:min(100% - 40px,990px);margin:0 auto;padding-bottom:34px}
+    .sitehead{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:22px 0 20px}
+    .brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;font-weight:850;letter-spacing:.01em;font-size:14px}
+    .brand-symbol{width:42px;height:42px;display:grid;place-items:center;border:1px solid rgba(187,166,255,.4);border-radius:14px;background:linear-gradient(140deg,#222858,#172b40);font-weight:1000;font-size:24px;color:#e5d6ff;box-shadow:0 8px 25px rgba(0,0,0,.14)}
+    .brand small{display:block;font-size:10px;letter-spacing:.22em;color:var(--muted);font-weight:650}
+    .eyebrow{font-size:11px;letter-spacing:.2em;font-weight:800;color:var(--teal);text-transform:uppercase}
+    .badge{border:1px solid var(--edge);background:rgba(255,255,255,.035);border-radius:50px;color:var(--muted);padding:8px 12px;font-size:12px;font-weight:700;white-space:nowrap}
+    .stage{position:relative;overflow:hidden;border:1px solid var(--edge);border-radius:28px;background:linear-gradient(144deg,rgba(25,36,63,.95),rgba(13,20,36,.98));box-shadow:0 30px 80px rgba(0,0,0,.24)}
+    .screen{padding:clamp(22px,5vw,50px)}
+    h1,h2,h3,p{margin-top:0}
+    .intro-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(250px,.9fr);align-items:center;gap:40px;min-height:510px}
+    .intro h1{margin:15px 0 22px;font-size:clamp(44px,6vw,72px);letter-spacing:-.065em;line-height:1.035;font-weight:900}
+    .gradtext{background:linear-gradient(100deg,#79f5d5 0%,#bac2ff 52%,#e5a5ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .lead{max-width:480px;color:var(--muted);font-size:16px;line-height:1.8;margin-bottom:22px}
+    .intro .mini-stats{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:28px}
+    .pill{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--edge);border-radius:40px;padding:6px 12px;background:#101d34;color:#dce7fa;font-size:12px;font-weight:750}
+    .primary{border:0;border-radius:16px;padding:16px 26px;background:linear-gradient(105deg,#68ecc9,#b3c4fa);color:#0b172a;font-weight:900;box-shadow:0 12px 36px rgba(75,224,192,.15);transition:transform .15s ease,filter .15s ease}
+    .primary:hover{transform:translateY(-2px);filter:brightness(1.05)}
+    .primary:active{transform:scale(.99)}
+    .ghost{border:1px solid var(--edge);background:rgba(255,255,255,.045);color:var(--text);border-radius:14px;padding:11px 16px;font-weight:740}
+    .ghost:hover{background:rgba(255,255,255,.08)}
+    .mode{display:flex;align-items:center;gap:10px;color:#d9e4fa;margin:0 0 21px;font-size:13px;font-weight:650;cursor:pointer;user-select:none}
+    .mode input{accent-color:var(--teal);width:17px;height:17px}
+    .mode small{font-size:11px;color:var(--muted);font-weight:500}
+    .collage{height:390px;position:relative;display:grid;place-items:center;isolation:isolate}
+    .halo{position:absolute;width:290px;height:290px;border-radius:50%;background:radial-gradient(circle,rgba(103,88,222,.33),transparent 68%);filter:blur(12px)}
+    .art-card{position:absolute;width:230px;height:275px;border-radius:23px;box-shadow:0 25px 48px #0007;display:flex;align-items:flex-end;padding:20px;overflow:hidden;border:1px solid #ffffff28}
+    .art-card::before{content:"";position:absolute;inset:0;opacity:.85}
+    .art-card.real{transform:translate(-48px,-12px) rotate(-12deg);background:linear-gradient(160deg,#234d5c,#0b2831)}
+    .art-card.real::before{background:radial-gradient(ellipse at 50% 33%,#8ee9c0 0 12%,transparent 13%),radial-gradient(ellipse at 55% 110%,#368d7d 0 42%,transparent 43%),linear-gradient(24deg,#1a4434,transparent 55%)}
+    .art-card.ai{transform:translate(54px,23px) rotate(10deg);background:linear-gradient(150deg,#402460,#211d50)}
+    .art-card.ai::before{background:radial-gradient(ellipse at 52% 34%,#caadf1 0 14%,transparent 15%),radial-gradient(ellipse at 55% 105%,#7052bc 0 43%,transparent 44%),linear-gradient(60deg,#604c98,transparent 60%)}
+    .art-card span{position:relative;z-index:1;border-radius:8px;padding:5px 10px;background:#061422a8;font-size:13px;font-weight:900;letter-spacing:.12em}
+    .spark{position:absolute;color:#7beed7;font-size:33px;font-weight:700;z-index:2}.spark.a{left:0;top:22px}.spark.b{right:0;bottom:0;color:#c7aeff}
+    .intro-note{color:var(--muted);font-size:12px;margin:14px 0 0}
+    .game-wrap{max-width:680px;margin:0 auto}
+    .gamehead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:15px}
+    .gamehead strong{font-size:14px;letter-spacing:-.01em}.gamehead span{font-size:13px;color:var(--muted)}
+    .progress-track{height:7px;background:#28324a;border-radius:20px;overflow:hidden;margin-bottom:18px}
+    .progress-fill{height:100%;width:0;border-radius:20px;background:linear-gradient(90deg,var(--teal),var(--purple));transition:width .35s ease}
+    .hud{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:18px}
+    .hud-cell{border:1px solid var(--edge);background:#111e33;border-radius:14px;padding:10px 12px;text-align:center}
+    .hud-cell span{display:block;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.12em;font-weight:750}
+    .hud-cell strong{font-size:18px;font-variant-numeric:tabular-nums}
+    .qtitle{text-align:center;margin:0 0 14px;font-size:clamp(21px,3.5vw,27px);letter-spacing:-.035em}
+    .image-frame{position:relative;display:grid;place-items:center;overflow:hidden;width:100%;height:clamp(265px,45vw,420px);border-radius:21px;background:radial-gradient(ellipse at 50% 40%,#253650,#080f20 80%);border:1px solid #33405f}
+    .image-frame img{width:100%;height:100%;object-fit:contain;display:block;opacity:0;transition:opacity .2s ease}
+    .image-frame.loaded img{opacity:1}
+    .image-frame .loading{position:absolute;inset:0;display:grid;place-items:center;gap:10px;color:#c5d4ec;font-size:13px;font-weight:650}
+    .spinner{width:36px;height:36px;border:3px solid #5a6682;border-top-color:#83f4d8;border-radius:50%;animation:spin .7s linear infinite;margin:auto}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .image-frame.loaded .loading{display:none}
+    .image-frame .error{position:absolute;inset:0;display:grid;place-content:center;text-align:center;padding:20px;background:#121c30;gap:10px}
+    .image-frame .error p{color:var(--muted);font-size:13px;max-width:320px;margin:0 auto}
+    .image-frame .error button{margin:auto}
+    .question-tip{color:var(--muted);font-size:12px;text-align:center;margin:10px 0 15px}
+    .timer{height:5px;border-radius:20px;background:#28334a;overflow:hidden;margin:-4px 0 15px}
+    .timer > div{height:100%;background:linear-gradient(90deg,#64eac8,#b9a0ff);width:100%;transition:width .1s linear}
+    .choices{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .choice{min-height:77px;text-align:center;padding:12px 10px;border:1px solid rgba(120,224,210,.35);border-radius:17px;background:linear-gradient(130deg,rgba(28,101,93,.23),rgba(29,62,63,.12));color:#d9fff5;font-size:15px;font-weight:850;transition:transform .14s,border-color .14s,background .14s}
+    .choice:hover:not(:disabled){transform:translateY(-2px);border-color:#79ffdc;background:#143f44}
+    .choice.ai{border-color:rgba(180,155,255,.4);background:linear-gradient(125deg,rgba(82,52,146,.22),rgba(47,37,90,.12));color:#ebddff}
+    .choice.ai:hover:not(:disabled){border-color:#d9b8ff;background:#352657}
+    .choice .choice-icon{display:block;font-size:22px;margin-bottom:2px}
+    .feedback{margin-top:16px;border-radius:17px;padding:17px 19px;background:#112c30;border:1px solid rgba(80,225,177,.32)}
+    .feedback.wrong{background:#34212e;border-color:rgba(255,117,139,.35)}
+    .feedback h3{font-size:20px;letter-spacing:-.03em;margin:0 0 6px}
+    .feedback p{color:#d9e6f8;margin:0 0 10px;font-size:14px}
+    .feedback small{display:block;color:var(--muted);font-size:12px;line-height:1.6;margin-bottom:13px}
+    .feedback .bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .source-link{color:#c1ecff;font-size:12px;font-weight:700;text-underline-offset:4px}
+    .feedback .primary{padding:11px 20px;border-radius:12px;font-size:14px}
+    .result{text-align:center;max-width:640px;margin:0 auto;padding-block:65px}
+    .result .trophy{font-size:64px;margin-bottom:10px;line-height:1}
+    .result h2{font-size:clamp(34px,5vw,54px);letter-spacing:-.05em;margin-bottom:12px}
+    .result .score-big{font-size:clamp(54px,10vw,90px);letter-spacing:-.08em;font-weight:950;line-height:1.1;color:var(--teal);margin:15px 0 7px}
+    .result p{color:var(--muted);font-size:15px;max-width:430px;margin:0 auto 25px}
+    .result-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0}
+    .result-metrics > div{background:#102039;border:1px solid var(--edge);border-radius:16px;padding:15px}
+    .result-metrics strong{display:block;font-size:25px}.result-metrics span{font-size:11px;color:var(--muted)}
+    .actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .sitefoot{padding:17px 5px 0;color:var(--muted);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font-size:12px}
+    .sitefoot a{color:#c5d5ed;text-decoration:underline;text-underline-offset:4px}
+    .source-note{margin:12px 0 0;color:var(--muted);font-size:11px;max-width:680px}
+    .credits{max-width:790px;margin:12px auto 0;border:1px solid var(--edge);border-radius:15px;background:#101b2b;padding:12px 16px;font-size:12px;color:var(--muted)}
+    .credits summary{cursor:pointer;color:#dbe8fa;font-weight:750}
+    .credits ul{padding-left:22px;columns:2;gap:26px}.credits li{break-inside:avoid;margin:5px 0}.credits a{color:#d1e7fa}
+    @media(max-width:700px){.intro-grid{grid-template-columns:1fr;gap:10px;min-height:0}.collage{height:180px;order:-1;margin:0 auto;width:240px}.halo{width:195px;height:195px}.art-card{width:122px;height:146px;border-radius:16px;padding:10px}.art-card.real{transform:translate(-30px,-5px) rotate(-13deg)}.art-card.ai{transform:translate(27px,7px) rotate(13deg)}.art-card span{font-size:10px}.spark{font-size:23px}.intro h1{font-size:clamp(39px,11vw,61px)}.lead{font-size:14px;line-height:1.7}.screen{padding:24px}.credits ul{columns:1}}
+    @media(max-width:440px){.shell{width:100%;padding-bottom:0}.sitehead{padding:12px 16px}.brand{font-size:12px}.brand-symbol{width:35px;height:35px;font-size:20px;border-radius:11px}.brand small{font-size:9px}.badge{padding:6px 9px;font-size:11px}.stage{border-radius:0;border-left:0;border-right:0}.screen{padding:21px 14px 26px}.collage{height:140px}.art-card{width:115px;height:136px}.intro h1{font-size:42px}.gamehead{margin-bottom:12px}.image-frame{height:min(47dvh,385px);min-height:235px;border-radius:15px}.hud-cell{padding:9px 6px}.qtitle{font-size:22px}.choice{min-height:72px;font-size:14px}.sitefoot{padding:18px 14px}.credits{border-radius:0;margin:12px 0 0}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="sitehead">
+      <a class="brand" href="https://wolkanca.com/" target="_blank" rel="noopener noreferrer" aria-label="Wolkanca.com ana sayfa">
+        <span class="brand-symbol" aria-hidden="true">W</span>
+        <span>WOLKANCA<small>OYUN LABORATUVARI</small></span>
+      </a>
+      <span class="badge">01 / Görsel Quiz</span>
+    </header>
+    <main class="stage" id="game-main">
+      <section class="screen intro" id="screen-intro" aria-labelledby="intro-title">
+        <div class="intro-grid">
+          <div>
+            <div class="eyebrow">Gözlerine ne kadar güveniyorsun?</div>
+            <h1 id="intro-title">Gerçek mi,<br><span class="gradtext">Yapay Zekâ mı?</span></h1>
+            <p class="lead">Her şey göründüğü gibi değil. 10 görsele bak, gerçek bir fotoğraf mı yoksa yapay zekâ üretimi mi olduğunu tahmin et. Bakalım gözlerin algoritmaları yakalayabilecek mi?</p>
+            <div class="mini-stats"><span class="pill">✦ 10 görsel</span><span class="pill">◎ İki seçenek</span><span class="pill" id="best-pill">★ İlk rekorunu kır</span></div>
+            <label class="mode"><input type="checkbox" id="timed-mode"> 20 saniyelik hızlı mod <small>(isteğe bağlı)</small></label>
+            <button class="primary" id="start-btn" type="button">Oyuna Başla <span aria-hidden="true">↗</span></button>
+            <p class="intro-note">Ücretsiz • Üyelik yok • Her tur farklı görseller</p>
+          </div>
+          <div class="collage" aria-hidden="true"><div class="halo"></div><div class="art-card real"><span>GERÇEK?</span></div><div class="art-card ai"><span>AI?</span></div><span class="spark a">✳</span><span class="spark b">✦</span></div>
+        </div>
+      </section>
+      <section class="screen" id="screen-game" hidden aria-labelledby="question-title">
+        <div class="game-wrap">
+          <div class="gamehead"><strong>Görsel <span id="question-index">1 / 10</span></strong><span id="mode-label">Dikkatle bak 👀</span></div>
+          <div class="progress-track" aria-label="Oyun ilerlemesi"><div class="progress-fill" id="progress-fill"></div></div>
+          <div class="hud" aria-live="polite"><div class="hud-cell"><span>Doğru</span><strong id="hud-correct">0</strong></div><div class="hud-cell"><span>Puan</span><strong id="hud-points">0</strong></div><div class="hud-cell"><span>Seri</span><strong id="hud-streak">0 🔥</strong></div></div>
+          <h2 class="qtitle" id="question-title">Bu görsel gerçek mi?</h2>
+          <div class="image-frame" id="image-frame">
+            <div class="loading" id="loading" role="status"><div><div class="spinner" aria-hidden="true"></div><div style="margin-top:10px">Görsel yükleniyor…</div></div></div>
+            <img id="question-image" src="" alt="Gerçek veya yapay zekâ olduğu tahmin edilecek görsel" loading="eager" decoding="async" referrerpolicy="no-referrer">
+            <div class="error" id="image-error" hidden role="alert"><strong>Görsel yüklenemedi</strong><p>Wikimedia Commons bağlantısı geçici olarak erişilemiyor olabilir. Puan kaybetmeden başka bir görsele geçebilirsin.</p><button class="ghost" id="skip-btn" type="button">Başka görsel getir ↻</button></div>
+          </div>
+          <p class="question-tip" id="hint-text">Detaylara bak, sonra kararını ver. Klavyede 1 veya 2'yi de kullanabilirsin.</p>
+          <div class="timer" id="timer-track" hidden aria-label="Kalan süre"><div id="timer-fill"></div></div>
+          <div class="choices" id="choices">
+            <button class="choice" id="choice-real" disabled type="button"><span class="choice-icon" aria-hidden="true">◉</span>Gerçek fotoğraf <span style="opacity:.65;font-size:11px">(1)</span></button>
+            <button class="choice ai" id="choice-ai" disabled type="button"><span class="choice-icon" aria-hidden="true">✧</span>Yapay zekâ <span style="opacity:.65;font-size:11px">(2)</span></button>
+          </div>
+          <div class="feedback" id="feedback" hidden role="status" aria-live="polite">
+            <h3 id="feedback-title"></h3><p id="feedback-copy"></p><small id="feedback-meta"></small>
+            <div class="bottom"><a class="source-link" id="feedback-source" href="https://commons.wikimedia.org" target="_blank" rel="noopener noreferrer">Kaynağı gör ↗</a><button class="primary" id="next-btn" type="button">Sonraki görsel →</button></div>
+          </div>
+        </div>
+      </section>
+      <section class="screen result" id="screen-result" hidden aria-labelledby="result-title">
+        <div class="trophy" id="result-emoji" aria-hidden="true">🏆</div>
+        <div class="eyebrow">TUR TAMAMLANDI</div>
+        <h2 id="result-title">Gözlerin keskin!</h2>
+        <div class="score-big" id="result-score">8/10</div>
+        <p id="result-subtitle"></p>
+        <div class="result-metrics"><div><strong id="result-points">0</strong><span>Toplam puan</span></div><div><strong id="result-maxstreak">0</strong><span>En uzun seri</span></div><div><strong id="result-best">0</strong><span>En iyi doğru sayısı</span></div></div>
+        <div class="actions"><button class="primary" id="replay-btn" type="button">Yeniden Oyna ↻</button><button class="ghost" id="share-btn" type="button">Sonucumu paylaş ↗</button></div>
+        <p id="share-status" style="margin-top:15px;font-size:12px" role="status" aria-live="polite"></p>
+      </section>
+    </main>
+    <div class="sitefoot"><span>© Wolkanca Oyun Laboratuvarı • V1.0</span><span><a href="https://wolkanca.com/" target="_blank" rel="noopener noreferrer">wolkanca.com</a> · <a href="https://github.com/wolkanca/redlist-quiz" target="_blank" rel="noopener noreferrer">İlham alınan oyun</a></span></div>
+    <p class="source-note">Bu bir eğlence ve görsel okuryazarlık oyunudur; bir görselin yapay zekâ olup olmadığı yalnızca görünüşünden kesin belirlenemez. Doğru cevaplar görsellerin yayınlandığı kaynaklardaki üretim bilgilerine dayanır.</p>
+    <details class="credits"><summary>Görsel kaynakları ve kullanım koşulları</summary><p>Oyun görselleri Wikimedia Commons üzerinde yayınlanan dosyalara yönlendirilir. Her dosyanın üretim kaydı ve lisansı kendi sayfasında belirtilir. İçerikleri yeniden yayınlarken lisansları ayrıca kontrol edin. Wikimedia Commons ve görsellerin sahipleri bu oyunla bağlantılı değildir.</p><ul id="credits-list"></ul></details>
+  </div>
+  <script type="application/json" id="question-data">[{"id":"ai-milan","type":"ai","file":"Milan_photo_ai_generated.png","title":"Milano sokak manzarası","explanation":"DALL·E kullanılarak oluşturulmuş kurgusal bir Milano görseli.","credit":"DALL·E / Ashoppio","license":"CC0 1.0","source":"https://commons.wikimedia.org/wiki/File:Milan_photo_ai_generated.png","directUrl":"https://upload.wikimedia.org/wikipedia/commons/3/3d/Milan_photo_ai_generated.png"},{"id":"ai-sunset","type":"ai","file":"Alone_AI-generated_image.jpg","title":"Gün batımı ve oda","explanation":"Bu sahne ChatGPT ile görsel olarak üretildi; fotoğraf değil.","credit":"ChatGPT / Fazoffic","license":"Public domain (Commons beyanı)","source":"https://commons.wikimedia.org/wiki/File:Alone_AI-generated_image.jpg","directUrl":"https://upload.wikimedia.org/wikipedia/commons/f/f3/Alone_AI-generated_image.jpg"},{"id":"ai-valley","type":"ai","file":"Scenic_Valley_in_the_Afternoon_(Imagen_3.0_002_model).webp","title":"Dağ vadisi","explanation":"Manzara Google Imagen 3.0 ile metinden üretildi.","credit":"Imagen 3.0 / VulcanSphere","license":"CC0 1.0","source":"https://commons.wikimedia.org/wiki/File:Scenic_Valley_in_the_Afternoon_(Imagen_3.0_002_model).webp","directUrl":"https://upload.wikimedia.org/wikipedia/commons/9/97/Scenic_Valley_in_the_Afternoon_%28Imagen_3.0_002_model%29.webp"},{"id":"ai-dog","type":"ai","file":"AI_(Artificial_Intelligence)_Dog.jpg","title":"Köpek portresi","explanation":"Wikimedia Commons kaydı bu görseli yapay zekâ üretimi olarak sınıflandırıyor.","credit":"AI art / Wikimedia Commons","license":"CC0 1.0","source":"https://commons.wikimedia.org/wiki/File:AI_(Artificial_Intelligence)_Dog.jpg","directUrl":"https://upload.wikimedia.org/wikipedia/commons/d/df/AI_%28Artificial_Intelligence%29_Dog.jpg"},{"id":"ai-cat","type":"ai","file":"Scottish_fold_cat.png","title":"Scottish Fold kedi","explanation":"Bu kedi portresi Midjourney ile üretildi.","credit":"Midjourney / Netha Hussain","license":"CC0 1.0","source":"https://commons.wikimedia.org/wiki/File:Scottish_fold_cat.png","directUrl":"https://upload.wikimedia.org/wikipedia/commons/e/e1/Scottish_fold_cat.png"},{"id":"ai-hungry","type":"ai","file":"An_angry_man_with_an_empty_plate,_hungry.jpg","title":"Masada bir adam","explanation":"Yemek tabağı önündeki sahne DALL·E 3 ile üretildi.","credit":"DALL·E 3 / Raresvent","license":"CC0 1.0","source":"https://commons.wikimedia.org/wiki/File:An_angry_man_with_an_empty_plate,_hungry.jpg","directUrl":"https://upload.wikimedia.org/wikipedia/commons/8/8b/An_angry_man_with_an_empty_plate%2C_hungry.jpg"},{"id":"ai-caveman","type":"ai","file":"AI-generated_image_of_a_caveman_presenting_the_invention_of_the_wheel,_showing_6-fingered_handprints_on_the_cave_painting.png","title":"Mağara resmi","explanation":"Bir yapay zekâ görseli; kayıt açıklamasında parmak anatomisi örneği veriliyor.","credit":"GPT Image 2.5 / Karl432","license":"CC0 1.0","source":"https://commons.wikimedia.org/wiki/File:AI-generated_image_of_a_caveman_presenting_the_invention_of_the_wheel,_showing_6-fingered_handprints_on_the_cave_painting.png","directUrl":"https://upload.wikimedia.org/wikipedia/commons/a/a3/AI-generated_image_of_a_caveman_presenting_the_invention_of_the_wheel%2C_showing_6-fingered_handprints_on_the_cave_painting.png"},{"id":"ai-two-cat","type":"ai","file":"AI-generated_two-headed_cat.png","title":"İki başlı kedi","explanation":"Bu iki başlı kedi tasviri yapay zekâ üretimi.","credit":"AI / Wikimedia Commons","license":"CC0 1.0","source":"https://commons.wikimedia.org/wiki/File:AI-generated_two-headed_cat.png","directUrl":"https://upload.wikimedia.org/wikipedia/commons/2/28/AI-generated_two-headed_cat.png"},{"id":"ai-copy","type":"ai","file":"DALL-E_copying_work_1.jpg","title":"Sınıfta iki öğrenci","explanation":"Bing DALL·E 3 ile bir ders sahnesi oluşturulmuş.","credit":"DALL·E 3 / Bri","license":"CC0 1.0","source":"https://commons.wikimedia.org/wiki/File:DALL-E_copying_work_1.jpg","directUrl":"https://upload.wikimedia.org/wikipedia/commons/b/bf/DALL-E_copying_work_1.jpg"},{"id":"ai-paw","type":"ai","file":"A_man_taking_pawternity_leave_for_his_dog.png","title":"Köpekli adam","explanation":"Bu sahne ChatGPT ile üretilmiş yapay bir görseldir.","credit":"ChatGPT / Aryamaan Rajwade","license":"Public domain (Commons beyanı)","source":"https://commons.wikimedia.org/wiki/File:A_man_taking_pawternity_leave_for_his_dog.png","directUrl":"https://upload.wikimedia.org/wikipedia/commons/f/f8/A_man_taking_pawternity_leave_for_his_dog.png"},{"id":"ai-scene","type":"ai","file":"Scenic_Valley_in_the_Afternoon_(HiDream-I1-Dev).webp","title":"Ormanlık vadi","explanation":"Bu vadi sahnesi HiDream-I1-Dev modeliyle metinden oluşturulmuş.","credit":"HiDream-I1-Dev / VulcanSphere","license":"CC0 1.0","source":"https://commons.wikimedia.org/wiki/File:Scenic_Valley_in_the_Afternoon_(HiDream-I1-Dev).webp","directUrl":"https://upload.wikimedia.org/wikipedia/commons/1/16/Scenic_Valley_in_the_Afternoon_%28HiDream-I1-Dev%29.webp"},{"id":"real-cat","type":"real","file":"Cat_(4849043080).jpg","title":"Kedi fotoğrafı","explanation":"Nicolas Vigier tarafından çekilmiş, Flickr kaynaklı gerçek bir kedi fotoğrafı.","credit":"Nicolas Vigier","license":"CC0 1.0","source":"https://commons.wikimedia.org/wiki/File:Cat_(4849043080).jpg","directUrl":"https://upload.wikimedia.org/wikipedia/commons/0/01/Cat_%284849043080%29.jpg"},{"id":"real-hanoi","type":"real","file":"Street_scene_while_walking_in_Hanoi_01.jpg","title":"Hanoi sokakları","explanation":"Hanoi sokaklarında çekilmiş ve Wikimedia Commons’a yüklenmiş fotoğraf.","credit":"Amenoc","license":"CC0 1.0","source":"https://commons.wikimedia.org/wiki/File:Street_scene_while_walking_in_Hanoi_01.jpg","directUrl":"https://upload.wikimedia.org/wikipedia/commons/f/fa/Street_scene_while_walking_in_Hanoi_01.jpg"},{"id":"real-clouds","type":"real","file":"Landscape_with_clouds.jpg","title":"Bulutlu manzara","explanation":"Bir fotoğrafçı tarafından kaydedilmiş gerçek manzara fotoğrafı.","credit":"Aammell","license":"CC0 1.0","source":"https://commons.wikimedia.org/wiki/File:Landscape_with_clouds.jpg","directUrl":"https://upload.wikimedia.org/wikipedia/commons/8/83/Landscape_with_clouds.jpg"},{"id":"real-nyc","type":"real","file":"New_York_City_street.JPG","title":"New York sokağı","explanation":"New York’ta çekilmiş sokak fotoğrafı.","credit":"Alanthebox","license":"CC0 1.0","source":"https://commons.wikimedia.org/wiki/File:New_York_City_street.JPG","directUrl":"https://upload.wikimedia.org/wikipedia/commons/4/4c/New_York_City_street.JPG"},{"id":"real-flower","type":"real","file":"Flower_photo_normal.jpg","title":"Çiçek yakından","explanation":"Wikimedia Commons’ta fotoğraf olarak kayıtlı gerçek çiçek görüntüsü.","credit":"LorelMan","license":"CC0 1.0","source":"https://commons.wikimedia.org/wiki/File:Flower_photo_normal.jpg","directUrl":"https://upload.wikimedia.org/wikipedia/commons/8/8b/Flower_photo_normal.jpg"},{"id":"real-architecture","type":"real","file":"Architecture_(249194873).jpeg","title":"Mimari yapı","explanation":"500px kaynağından Wikimedia Commons’a aktarılmış gerçek mimari fotoğraf.","credit":"Rodrigo Argenton","license":"CC0 1.0","source":"https://commons.wikimedia.org/wiki/File:Architecture_(249194873).jpeg","directUrl":"https://upload.wikimedia.org/wikipedia/commons/1/14/Architecture_%28249194873%29.jpeg"},{"id":"real-forest","type":"real","file":"Landscape_of_a_wild_forest.jpg","title":"Orman manzarası","explanation":"Vahşi orman fotoğrafı; yapay zekâ üretimi olarak kayıtlı değil.","credit":"Wikimedia Commons katkıcısı","license":"CC0 1.0","source":"https://commons.wikimedia.org/wiki/File:Landscape_of_a_wild_forest.jpg","directUrl":"https://upload.wikimedia.org/wikipedia/commons/c/c9/Landscape_of_a_wild_forest.jpg"},{"id":"real-food","type":"real","file":"Food_photography_image.jpg","title":"Yemek fotoğrafı","explanation":"Yemek fotoğrafçılığı örneği olarak Commons’a yüklenmiş fotoğraf.","credit":"Wikimedia Commons katkıcısı","license":"CC0 1.0","source":"https://commons.wikimedia.org/wiki/File:Food_photography_image.jpg","directUrl":"https://upload.wikimedia.org/wikipedia/commons/c/c5/Food_photography_image.jpg"},{"id":"real-milo","type":"real","file":"Milo,_a_cat.jpg","title":"Ev kedisi","explanation":"Milo adlı kedi, gerçek bir fotoğrafın konusu.","credit":"Brianda (Wiki Ed)","license":"CC0 1.0","source":"https://commons.wikimedia.org/wiki/File:Milo,_a_cat.jpg","directUrl":"https://upload.wikimedia.org/wikipedia/commons/2/25/Milo%2C_a_cat.jpg"},{"id":"real-toronto","type":"real","file":"Street_in_downtown_Toronto.jpg","title":"Toronto şehir merkezi","explanation":"Toronto’da çekilmiş şehir fotoğrafı.","credit":"Hiàn","license":"CC0 1.0","source":"https://commons.wikimedia.org/wiki/File:Street_in_downtown_Toronto.jpg","directUrl":"https://upload.wikimedia.org/wikipedia/commons/b/bf/Street_in_downtown_Toronto.jpg"},{"id":"real-landscape","type":"real","file":"Rocky_landscape_with_green_trees_and_cloudy_sky.jpg","title":"Kayalık arazi","explanation":"Kayalık ve yeşil ağaçlı gerçek bir manzara fotoğrafı.","credit":"Salma A.","license":"CC0 1.0","source":"https://commons.wikimedia.org/wiki/File:Rocky_landscape_with_green_trees_and_cloudy_sky.jpg","directUrl":"https://upload.wikimedia.org/wikipedia/commons/2/22/Rocky_landscape_with_green_trees_and_cloudy_sky.jpg"},{"id":"real-city","type":"real","file":"City_Street.jpg","title":"Şehir sokağı","explanation":"Wikimedia Commons’a gerçek sokak fotoğrafı olarak eklenen görsel.","credit":"Wikimedia Commons katkıcısı","license":"CC0 1.0","source":"https://commons.wikimedia.org/wiki/File:City_Street.jpg","directUrl":"https://upload.wikimedia.org/wikipedia/commons/d/d8/City_Street.jpg"}]</script>
+  <script>
+  (() => {
+    'use strict';
+    const QUESTIONS = JSON.parse(document.getElementById('question-data').textContent);
+    const $ = id => document.getElementById(id);
+    const ROUND_COUNT = 10;
+    const SEC_PER_IMAGE = 20;
+    const LS_KEY = 'wolkanca-ai-or-real:v1:best';
+    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const state = {round:[],unused:[],index:0,correct:0,points:0,streak:0,maxStreak:0,answered:0,timed:false,remaining:SEC_PER_IMAGE,loaded:false,locked:true,loadingToken:0,timer:null,timeout:null,chosen:null};
+    const safeGet = () => {try{return JSON.parse(localStorage.getItem(LS_KEY) || 'null') || {correct:0,points:0}}catch{return {correct:0,points:0}}};
+    const safeSet = value => {try{localStorage.setItem(LS_KEY,JSON.stringify(value))}catch{/* storage denied */}};
+    const shuffle = a => {const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b};
+    const sourceUrl = file => 'https://commons.wikimedia.org/wiki/Special:Redirect/file/' + encodeURIComponent(file) + '?width=960';
+    const originalUrl = q => q.directUrl || ('https://commons.wikimedia.org/wiki/Special:FilePath/' + encodeURIComponent(q.file));
+    const setScreen = name => {
+      ['intro','game','result'].forEach(x=> $('screen-'+x).hidden = x !== name);
+      if(name!=='intro' && !reducedMotion) $('game-main').scrollIntoView({behavior:'smooth',block:'start'});
+    };
+    const resetTimer = () => {clearInterval(state.timer);state.timer=null;clearTimeout(state.timeout);state.timeout=null};
+    const updateBestPill = () => {const best=safeGet();$('best-pill').textContent=best.correct ? `★ Rekor: ${best.correct}/${ROUND_COUNT}` : '★ İlk rekorunu kır'};
+    const scoreUI = () => {$('hud-correct').textContent=state.correct;$('hud-points').textContent=state.points;$('hud-streak').textContent=state.streak+' 🔥'};
+    const startRound = () => {
+      resetTimer();state.timed=$('timed-mode').checked;
+      const real=shuffle(QUESTIONS.filter(q=>q.type==='real'));
+      const ai=shuffle(QUESTIONS.filter(q=>q.type==='ai'));
+      if(real.length<5 || ai.length<5){alert('Oyunu başlatmak için en az 5 gerçek ve 5 yapay zekâ görseli gerekir.');return}
+      state.round=shuffle([...real.slice(0,5),...ai.slice(0,5)]);
+      state.unused=[...real.slice(5),...ai.slice(5)];
+      state.index=0;state.correct=0;state.points=0;state.streak=0;state.maxStreak=0;state.answered=0;
+      $('mode-label').textContent=state.timed ? '20 saniye / görsel ⏳':'Dikkatle bak 👀';
+      $('timer-track').hidden=!state.timed;
+      setScreen('game');showQuestion();
+    };
+    const startClock = () => {
+      if(!state.timed)return;
+      const start=performance.now();
+      state.timer=setInterval(()=>{
+        const remaining=Math.max(0, SEC_PER_IMAGE-(performance.now()-start)/1000);
+        state.remaining=remaining;
+        $('timer-fill').style.width=(remaining/SEC_PER_IMAGE*100)+'%';
+        $('mode-label').textContent=`${Math.ceil(remaining)} sn kaldı ⏳`;
+        if(remaining<=0){resetTimer();choose('timeout')}
+      },100);
+    };
+    const showQuestion = () => {
+      resetTimer();
+      if(state.index>=state.round.length){finishRound();return}
+      const q=state.round[state.index];
+      state.loadingToken++;const token=state.loadingToken;
+      state.locked=true;state.loaded=false;state.chosen=null;
+      $('feedback').hidden=true;$('feedback').classList.remove('wrong');$('choices').hidden=false;
+      $('question-index').textContent=(state.index+1)+' / '+state.round.length;
+      $('progress-fill').style.width=(state.index/state.round.length*100)+'%';
+      $('choice-real').disabled=true;$('choice-ai').disabled=true;
+      $('hint-text').textContent="Detaylara bak, sonra kararını ver. Klavyede 1 veya 2'yi de kullanabilirsin.";
+      $('image-frame').classList.remove('loaded');$('loading').hidden=false;$('image-error').hidden=true;
+      $('question-image').removeAttribute('src');
+      if(state.timed){$('timer-fill').style.width='100%';$('mode-label').textContent='Görsel yükleniyor…'}
+      const img=$('question-image');let attempts=0;
+      img.onload=()=>{
+        if(token!==state.loadingToken)return;
+        state.loaded=true;state.locked=false;img.alt='Tahmin edilecek görsel: '+q.title;
+        $('image-frame').classList.add('loaded');$('loading').hidden=true;
+        $('choice-real').disabled=false;$('choice-ai').disabled=false;
+        if(state.timed)startClock();
+      };
+      img.onerror=()=>{
+        if(token!==state.loadingToken)return;
+        if(attempts++===0){img.src=originalUrl(q);return}
+        state.loaded=false;state.locked=true;
+        $('image-frame').classList.add('loaded');$('loading').hidden=true;$('image-error').hidden=false;
+      };
+      img.src=sourceUrl(q.file);
+    };
+    const skipImage = () => {
+      resetTimer();state.loadingToken++;
+      const previous=state.round[state.index];
+      const replacement=state.unused.find(q=>q.type===previous.type);
+      if(replacement){state.unused=state.unused.filter(q=>q.id!==replacement.id);state.round[state.index]=replacement}
+      else{state.round.splice(state.index,1)}
+      showQuestion();
+    };
+    const choose = pick => {
+      if(state.locked || !state.loaded)return;
+      state.locked=true;resetTimer();
+      $('choice-real').disabled=true;$('choice-ai').disabled=true;
+      state.answered++;
+      const q=state.round[state.index];const passed=pick===q.type;
+      if(passed){state.correct++;state.streak++;state.maxStreak=Math.max(state.maxStreak,state.streak);state.points+=100+Math.min(100,(state.streak-1)*20)}
+      else state.streak=0;
+      scoreUI();
+      $('feedback-title').textContent=passed ? '✓ Bildin!':(pick==='timeout'?'⏱ Süre doldu!':'✕ Bu kez olmadı!');
+      $('feedback-copy').textContent=(q.type==='real'?'Bu gerçek bir fotoğraf. ':'Bu yapay zekâ üretimi. ')+q.explanation;
+      $('feedback-meta').textContent=q.credit+' · '+q.license;
+      $('feedback-source').href=q.source;
+      $('feedback').classList.toggle('wrong',!passed);
+      $('feedback').hidden=false;
+      $('choices').hidden=true;
+      $('hint-text').textContent=passed?`+${100+Math.min(100,(state.streak-1)*20)} puan kazandın!`:'Kaynağa bakarak doğrulayabilirsin.';
+      $('next-btn').textContent=state.index===state.round.length-1?'Sonuçları gör →':'Sonraki görsel →';
+      $('next-btn').focus({preventScroll:true});
+    };
+    const finishRound = () => {
+      resetTimer();$('progress-fill').style.width='100%';
+      const count=state.answered;const ratio=count ? state.correct/count : 0;
+      const result=ratio>=.9?['🏆','Dedektif gibi gözlerin var!']:ratio>=.7?['🔥','Gayet iyi yakaladın!']:ratio>=.5?['👀','Gözlerin fena değil!']:['🧐','Algoritmalar şaşırttı!'];
+      const best=safeGet();
+      if(state.correct>best.correct || (state.correct===best.correct&&state.points>best.points))safeSet({correct:state.correct,points:state.points});
+      const updated=safeGet();
+      $('result-emoji').textContent=result[0];$('result-title').textContent=count ? result[1]:'Tur yarıda kaldı';
+      $('result-score').textContent=state.correct+'/'+count;
+      $('result-subtitle').textContent=count ? `${count} görselin ${state.correct} tanesini doğru bildin. Yapay zekânın görüntü üretim becerisi her geçen gün değişiyor; tekrar dene, yeni sorularla kendini test et.`:'Görseller yüklenemedi. Ağ bağlantını kontrol edip tekrar dene.';
+      $('result-points').textContent=state.points;$('result-maxstreak').textContent=state.maxStreak;$('result-best').textContent=updated.correct+'/'+ROUND_COUNT;
+      $('share-status').textContent='';updateBestPill();setScreen('result');
+    };
+    const share = async () => {
+      const url=location.protocol==='file:'?'':location.href.split('#')[0].split('?')[0];
+      const msg=`Gerçek mi, Yapay Zekâ mı? testinde ${state.correct}/${state.answered} bildim (${state.points} puan)! Sen kaçını bulabilirsin?`+(url?'\n'+url:'');
+      try{if(navigator.share){await navigator.share({title:'Gerçek mi, Yapay Zekâ mı?',text:msg});return}}catch(e){if(e.name==='AbortError')return}
+      try{await navigator.clipboard.writeText(msg);$('share-status').textContent='Sonuç panoya kopyalandı!'}
+      catch{$('share-status').textContent='Paylaşım metni: '+msg}
+    };
+    $('start-btn').addEventListener('click',startRound);
+    $('replay-btn').addEventListener('click',startRound);
+    $('choice-real').addEventListener('click',()=>choose('real'));
+    $('choice-ai').addEventListener('click',()=>choose('ai'));
+    $('next-btn').addEventListener('click',()=>{state.index++;showQuestion()});
+    $('skip-btn').addEventListener('click',skipImage);
+    $('share-btn').addEventListener('click',share);
+    document.addEventListener('keydown',e=>{
+      if($('screen-game').hidden||state.locked||e.altKey||e.ctrlKey||e.metaKey||['INPUT','TEXTAREA'].includes(document.activeElement?.tagName))return;
+      if(e.key==='1')choose('real');else if(e.key==='2')choose('ai');
+    });
+    const credits=$('credits-list');
+    QUESTIONS.forEach(q=>{const li=document.createElement('li');const a=document.createElement('a');a.href=q.source;a.target='_blank';a.rel='noopener noreferrer';a.textContent=q.title;li.append(a,document.createTextNode(' · '+q.license));credits.append(li)});
+    updateBestPill();
+    // Parent page can opt into auto-height iframe sizing by listening to this event.
+    const notifyHeight=()=>{try{parent.postMessage({type:'wolkanca-quiz:height',height:document.documentElement.scrollHeight},'*')}catch{}};
+    if('ResizeObserver' in window)new ResizeObserver(notifyHeight).observe(document.body);
+    window.addEventListener('load',notifyHeight);
+  })();
+  </script>
+</body>
+</html>
