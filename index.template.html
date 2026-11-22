@@ -326,6 +326,12 @@
     if('ResizeObserver' in window)new ResizeObserver(notifyHeight).observe(document.body);
     window.addEventListener('load',notifyHeight);
   })();
+  /* canonical */
+  let ref = document.referrer, canonical = document.querySelector("link[rel='canonical']").getAttribute("href");
+  if (!ref || !ref.match(/wolkanca/)) {
+    window.location.href = canonical;
+  }
+  /* canonical */
   </script>
 </body>
 </html>
