@@ -85,3 +85,13 @@ Oyun bir eğlence ve medya okuryazarlığı çalışmasıdır. **Görsele bakara
 ## Bir sonraki sürüm için öneri
 
 Gerçek yayımlamada Commons görsellerini tek tek inceleyip **izinleri uygunsa optimize edilmiş WebP kopyalarını kendi CDN'inde barındır**; böylece üçüncü taraf erişimine bağımlılık azalır. Yeni sorularda kaynak ve üretim kaydı şart olsun. Daha sonra WordPress kısa kodu, günlük meydan okuma ve sonuç paylaşımı için dinamik Open Graph görseli eklenebilir.
+
+
+## Oyunlar: 
+- https://wolkanca.com/gercek-haber-mi-uydurma-mi-bu-haberlerin-hangisine-inanirsin
+- https://wolkanca.com/gercek-mi-yapay-zeka-mi-quiz-oyun
+- https://wolkanca.com/yakinlastirilmis-nesneyi-bul-bu-gorselde-ne-var-oyun
+- https://wolkanca.com/turkiyeyi-ne-kadar-taniyorsun-sehir-tahmin-oyunu
+- https://wolkanca.com/terorist-tanima-terorist-testi-oyunu-terorist-quiz
+
+
